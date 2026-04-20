@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Mystery Path is a browser-based interactive mystery adventure built with HTML, CSS and JavaScript.">
+    <title>Mystery Path - Interactive Adventure</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="loading-screen" class="loading-screen" aria-hidden="true">
+        <div class="loading-box">
+            <div class="loading-mark"></div>
+            <h1>Mystery Path</h1>
+            <p>Entering the forest...</p>
+        </div>
+    </div>
+
+    <header>
+        <nav>
+            <button class="logo" type="button" data-section-target="home">Mystery Path</button>
+            <ul id="main-menu">
+                <li><button class="nav-btn active-nav" type="button" data-section-target="home">Home</button></li>
+                <li><button class="nav-btn" type="button" id="game-nav-btn">Game</button></li>
+                <li><button class="nav-btn" type="button" data-section-target="about">About</button></li>
+                <li><button class="nav-btn" type="button" data-section-target="help">Help</button></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="home" class="active-section">
+            <div class="hero-panel reveal">
+                <p class="section-tag">Interactive Adventure</p>
+                <h1>Welcome to Mystery Path</h1>
+                <p class="hero-text">An interactive, browser-based mystery adventure with branching choices, collectible items, and multiple endings.</p>
+                <div class="hero-actions">
+                    <button id="start-btn" class="primary-btn" type="button">Start New Game</button>
+                    <button id="resume-btn" class="secondary-btn" type="button" hidden>Resume Journey</button>
+                </div>
+                <div class="hero-features">
+                    <span>Background scenes</span>
+                    <span>Inventory</span>
+                    <span>Save progress</span>
+                    <span>Multiple endings</span>
+                </div>
+            </div>
+        </section>
+
+        <section id="game" class="hidden-section">
+            <div class="game-shell reveal">
+                <div class="game-container">
+                    <div class="game-header-row">
+                        <div>
+                            <p id="chapter-label" class="section-tag">Chapter 1</p>
+                            <h2 id="game-title">Enter the Forest</h2>
+                        </div>
+                        <div class="compact-actions">
+                            <button class="mini-btn" id="mute-btn" type="button">Sound: On</button>
+                            <button class="mini-btn" id="skip-btn" type="button">Skip Typing</button>
+                        </div>
+                    </div>
+
+                    <div class="game-meta">
+                        <div>
+                            <span class="meta-label">Scene</span>
+                            <strong id="scene-label">Fog-Covered Crossroads</strong>
+                        </div>
+                        <div>
+                            <span class="meta-label">Progress</span>
+                            <strong id="progress-label">0%</strong>
+                        </div>
+                    </div>
+
+                    <div class="progress-track" aria-hidden="true">
+                        <span id="progress-fill" class="progress-fill"></span>
+                    </div>
+
+                    <div id="story-text" class="story-box"></div>
+                    <div id="choices-container" class="choices-box"></div>
+
+                    <div class="game-bottom-actions">
+                        <button id="save-home-btn" class="secondary-btn" type="button">Save &amp; Home</button>
+                        <button id="restart-btn" class="danger-btn" type="button">Restart Run</button>
+                    </div>
+                </div>
+
+                <div class="status-grid">
+                    <div class="status-card">
+                        <h3>Inventory</h3>
+                        <ul id="inventory-list" class="pill-list">
+                            <li class="empty-item">No items collected yet.</li>
+                        </ul>
+                    </div>
+
+                    <div class="status-card">
+                        <h3>Endings Found</h3>
+                        <p class="counter-text"><strong id="ending-count">0 / 5</strong></p>
+                        <ul id="ending-list" class="pill-list ending-list"></ul>
+                    </div>
+
+                    <div class="status-card">
+                        <h3>Settings</h3>
+                        <label for="text-speed" class="range-label">Text Speed</label>
+                        <input id="text-speed" type="range" min="15" max="65" step="5" value="30">
+                        <p class="small-note">Lower values make the text appear faster.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="hidden-section">
+            <div class="info-panel reveal">
+                <h2>About Mystery Path</h2>
+                <p>This project is an interactive story game developed for the SET08101 Web Technologies module.</p>
+                <p>It demonstrates DOM manipulation, local storage, responsive design, dynamic content rendering, and JavaScript-based story logic without depending on a framework.</p>
+                <ul>
+                    <li>Branching narrative structure with multiple endings</li>
+                    <li>Inventory tracking and conditional choices</li>
+                    <li>Save and resume using localStorage</li>
+                    <li>Responsive single-page interface using HTML, CSS, and JavaScript</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="help" class="hidden-section">
+            <div class="info-panel reveal">
+                <h2>How to Play</h2>
+                <ul>
+                    <li>Read the story text carefully before making a choice.</li>
+                    <li>Some choices unlock items that affect later scenes.</li>
+                    <li>Your run is saved automatically so you can continue later.</li>
+                    <li>Try different paths to discover every ending.</li>
+                </ul>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Mystery Path - Web Technologies Coursework</p>
+    </footer>
+
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+    <audio id="click-sound" src="click.mp3"></audio>
+    <audio id="typing-sound" src="typing-click.mp3"></audio>
+    <audio id="bg-music" src="mystery-loop.mp3" loop></audio>
+
+    <script src="script.js"></script>
+</body>
+</html>
